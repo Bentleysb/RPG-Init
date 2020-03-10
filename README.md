@@ -41,4 +41,4 @@ At this point all files have been compiled to RPG_Init.html.
 
 RPG Init is a free and open source program under the MIT license.  
 Feel free to modify and distribute the program to suit your needs.  
-Contributions and suggestions are welcome on the project's [github](add_project_link).
+Contributions and suggestions are welcome on the project's [github](https://github.com/Bentleysb/RPG-Init).
