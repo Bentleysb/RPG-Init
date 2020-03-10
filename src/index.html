@@ -1,0 +1,33 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <title>RPG Init</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/RPG_init.css" inline>
+
+    <script type="application/javascript" src="../libs/react/react.production.min.js" inline></script>
+    <script type="application/javascript" src="../libs/react/react-dom.production.min.js" inline></script>
+    <script type="application/javascript" src="js/creatures.js" inline></script>
+    <script type="application/javascript" src="js/RPG_init.js" inline></script>
+</head>
+<body class="root">
+    <div id="io_bar" class="button_bar" style="display:block;"></div>
+    <div id="encounter_header" class="encounter_header" style="display:block;"></div>
+    <div id="button_bar_container">
+        <div id="encounter_button_bar" class="button_bar"></div>
+        <div id="creature_button_bar" class="button_bar" style="display:none;"></div>
+    </div>
+    <div id="table_container">
+        <div id="encounter_table" class="table_container"></div>
+        <div id="creature_tables" class="table_container" style="display:none;">
+            <div id="player_table"></div>
+            <br>
+            <div id="creature_table"></div>
+        </div>
+    </div>
+    <div id="encounter_card"></div>
+    <div id="creature_card" style="display:none;"></div>
+    <div id="loading_overlay" class="loading"><p>Loading</p></div>
+    <script type="text/javascript" src="js/components.js" inline></script>
+</body>
+</html>
