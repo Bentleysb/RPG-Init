@@ -498,7 +498,9 @@ function encounter(){
         this.set_active_turn(0);
     }
     this.roll_np_creatures_init = function(crit = true){
-        for (const creature of this.creatures){
+        const selected = this.get_selected();
+        const creatures = selected.length > 0 ? selected.map(index => this.creatures[index]) : this.creatures;
+        for (const creature of creatures){
             if (creature.creature instanceof np_creature){
                 creature.roll_init(crit);
             }
