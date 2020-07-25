@@ -130,7 +130,7 @@ The card only displays information if a single creature is selected.
 There are 2 manipulable field on the encounter card:
 
 * **HP/MHP**: Current hit point of the creature and maximum hit point.
-* **Notes**: This field should be used to keep track of any other variables of an individual creature (marker for the creature, status effects, used special abilities, etc.). This field also interacts with the round counter through a special 'round expression' syntax. Round expression are written as 'r{round_number}' (e.g. r{10} for round 10). When the specified round is reached the notes header will appear red, as an alert. Round expressions can also be entered in a relative format by putting a '+' in front of the round number (e.g. r{+5}). The relative format will automatically be converted to the correct number of round after the current one. 
+* **Notes**: This field should be used to keep track of any other variables of an individual creature (marker for the creature, status effects, used special abilities, etc.). This field also interacts with the round counter through a special 'round expression' syntax. Round expressions are written as 'r{round_number}' (e.g. r{10} for round 10). When the specified round is reached the notes header will appear red, as an alert. Round expressions can also be entered in a relative format by putting a '+' in front of the round number (e.g. r{+5}). The relative format will automatically be converted to the correct number of rounds after the current one. 
 
 ## Saving and Loading
 Encounters and creature lists can be saved to json files and reloaded later.
