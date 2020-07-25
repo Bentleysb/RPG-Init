@@ -42,6 +42,8 @@ body {
 
 .encounter_title {
     font-size: 32pt;
+    display: inline-block;
+    margin: 0px;
 }
 
 .button_bar_button {
