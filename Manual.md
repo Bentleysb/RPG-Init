@@ -8,7 +8,8 @@ There are two headers that show on all views. They reside at the top of the prog
 
 The first is the Input/Output (IO) bar. It provides controls for loading and saving creature lists and encounters. On the far right of this bar there is a button to open a new instance of the program in a new tab/window.
 
-The second is the encounter title. It simply displays the name of the currently loaded encounter. The name is also edited using the text field in this header.
+The second is the encounter title. It displays the name of the currently loaded encounter and the current round. The name and round are edited using the text field in this header.
+The round counter will automatically increase or decrease when the active turn wraps around the encounter list.
 
 While shown on all views, these headers can be minimized using controls in each view.
 
@@ -128,8 +129,8 @@ The card only displays information if a single creature is selected.
 
 There are 2 manipulable field on the encounter card:
 
-* **HP/MHP**: Current hit point of the creature and maximum hit point. 
-* **Notes**: This field should be used to keep track of any other variables of an individual creature (marker for the creature, status effects, used special abilities, etc.)
+* **HP/MHP**: Current hit point of the creature and maximum hit point.
+* **Notes**: This field should be used to keep track of any other variables of an individual creature (marker for the creature, status effects, used special abilities, etc.). This field also interacts with the round counter through a special 'round expression' syntax. Round expression are written as 'r{round_number}' (e.g. r{10} for round 10). When the specified round is reached the notes header will appear red, as an alert. Round expressions can also be entered in a relative format by putting a '+' in front of the round number (e.g. r{+5}). The relative format will automatically be converted to the correct number of round after the current one. 
 
 ## Saving and Loading
 Encounters and creature lists can be saved to json files and reloaded later.
