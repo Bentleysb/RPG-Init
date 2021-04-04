@@ -389,6 +389,13 @@ function encounter_creature(name, creature, roll_MHP = false){
         document.dispatchEvent(creature_change);
     }
     this.set_notes = function(notes){
+        const round_exps = notes.match(/r{\+\d+}/g);
+        if (round_exps){
+            for (const round_exp of round_exps){
+                notes = notes.replace(round_exp, "r{"+(e_list.round+parseInt(round_exp.match(/\d+/g)[0])).toString()+"}")
+            }
+        }
+
         this.notes = notes;
         document.dispatchEvent(creature_change);
     }
@@ -412,6 +419,7 @@ function encounter(){
     this.creature_list = new creature_list();
     this.active_turn = 0;
     this.creatures = [];
+    this.round = 1
 
     // Setters
     this.set_name = function(name){
@@ -453,6 +461,10 @@ function encounter(){
         }
         document.dispatchEvent(creature_change);
     }
+    this.set_round = function(new_round){
+        this.round = new_round;
+        document.dispatchEvent(creature_change);
+    }
 
     // Creatures methods
     this.add_creature = function(creature){
@@ -472,6 +484,9 @@ function encounter(){
         var counter = 0;
         do {
             this.set_active_turn(this.active_turn+1);
+            if (this.active_turn == 0){
+                this.set_round(this.round+1)
+            }
             counter ++;
         }
         while (this.creatures.length >= counter && this.creatures[this.active_turn].dead);
@@ -480,6 +495,9 @@ function encounter(){
         var counter = 0;
         do {
             this.set_active_turn(this.active_turn-1);
+            if (this.active_turn == this.creatures.length-1){
+                this.set_round(this.round-1)
+            }
             counter ++;
         }
         while (this.creatures.length >= counter && this.creatures[this.active_turn].dead);
@@ -571,12 +589,14 @@ function encounter(){
         for (const creature of this.creatures){
             creatures.push(creature.to_json());
         }
-        return {"name":this.name,"turn":this.active_turn,"creatures":creatures};
+        return {"name":this.name,"turn":this.active_turn,"round":this.round,"creatures":creatures};
     }
     this.from_json = function(json){
         // Has a lot of checks for backwards copatability
         this.creatures = [];
         this.name = json.name;
+        this.round = ("round" in json) ? json.round : 1;
+
         for (const e_creature of json.creatures){
             var creature_creature = new creature();
             var creature_type = "creature";

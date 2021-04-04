@@ -105,15 +105,28 @@ class EncounterTitle extends React.Component{
     constructor(props){
         super(props);
         this.change_title = this.change_title.bind(this);
+        this.change_round = this.change_round.bind(this);
     }
 
     change_title(event){
         this.props.encounter.set_name(event.target.value);
     }
 
+    change_round(event){
+        var value = parseInt(event.target.value);
+        if (isNaN(value)){
+            value = 0;
+        }
+        this.props.encounter.set_round(value);
+    }
+
     render(){
         return(
-            <input type="text" value={this.props.encounter.name} size="25" class="encounter_title" onChange={this.change_title}/>
+            <div>
+                <input type="text" value={this.props.encounter.name} size="25" class="encounter_title" onChange={this.change_title}/>
+                <p class="encounter_title">&nbsp; Round: </p>
+                <input type="text" value={this.props.encounter.round==0?"":this.props.encounter.round} size="1" class="encounter_title" onChange={this.change_round}/>
+            </div>
         )
     }
 }
@@ -297,6 +310,7 @@ class EncounterCard extends React.Component{
         super(props);
         this.get_creature = this.get_creature.bind(this);
         this.get_header = this.get_header.bind(this);
+        this.get_notes_color = this.get_notes_color.bind(this);
         this.set_hp = this.set_hp.bind(this);
         this.set_notes = this.set_notes.bind(this);
         this.abilities_style = this.abilities_style.bind(this);
@@ -334,6 +348,20 @@ class EncounterCard extends React.Component{
         else {
             return creature.name;
         }
+    }
+
+    get_notes_color(){
+        const encounter = this.props.encounter;
+        const notes = this.get_creature().notes;
+        const round_exps = notes.match(/r{\d+}/g);
+        if (round_exps){
+            for (const round_exp of round_exps){
+                if (round_exp.match(/\d+/g) == encounter.round.toString()){
+                    return "red";
+                }
+            }
+        }
+        return "grey";
     }
 
     set_hp(event){
@@ -393,7 +421,7 @@ class EncounterCard extends React.Component{
                 <p class="abilities">{this.get_creature().creature.atks}</p>
                 <table class="creature_table card_table">
                     <tr class="creature_table">
-                        <th class="creature_table">Notes</th>
+                        <th class="creature_table" style={{backgroundColor: this.get_notes_color()}}>Notes</th>
                     </tr>
                     <tr class="creature_table">
                         <td class="creature_table card_input"><textarea rows="5" cols="5" class="notes" value={this.get_creature().notes} onChange={this.set_notes}></textarea></td>
