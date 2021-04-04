@@ -113,7 +113,11 @@ class EncounterTitle extends React.Component{
     }
 
     change_round(event){
-        this.props.encounter.set_round(parseInt(event.target.value));
+        var value = parseInt(event.target.value);
+        if (isNaN(value)){
+            value = 0;
+        }
+        this.props.encounter.set_round(value);
     }
 
     render(){
@@ -121,7 +125,7 @@ class EncounterTitle extends React.Component{
             <div>
                 <input type="text" value={this.props.encounter.name} size="25" class="encounter_title" onChange={this.change_title}/>
                 <p class="encounter_title">&nbsp; Round: </p>
-                <input type="text" value={this.props.encounter.round} size="1" class="encounter_title" onChange={this.change_round}/>
+                <input type="text" value={this.props.encounter.round==0?"":this.props.encounter.round} size="1" class="encounter_title" onChange={this.change_round}/>
             </div>
         )
     }
