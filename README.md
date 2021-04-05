@@ -29,10 +29,9 @@ From the root of the project run:
 `npm run build`  
 
 You should see
-```
-Successfully compiled 3 files with Babel.
-RPG_Init.html created
-```
+`Creating an optimized build...`
+followed by some build details and
+`RPG_Init.html created`
 
 At this point all files have been compiled to RPG_Init.html.
 
