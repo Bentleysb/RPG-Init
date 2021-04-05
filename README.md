@@ -10,7 +10,7 @@ The program is compiled to a single html file. If using a precompiled distributi
 
 The program is tested in Mozilla Firefox and Google Chrome. It is recommended use one of these web browsers to run the program.
 
-If using an uncompiled distribution (containing lib, scripts, and src folders), see below for how to build the project and then run as above.
+If using an uncompiled distribution (containing public, scripts, and src folders), see below for how to build the project and then run as above.
 
 ## Using the Program
 
