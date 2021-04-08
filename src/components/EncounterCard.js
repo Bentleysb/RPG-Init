@@ -1,3 +1,5 @@
+import DOMPurify from 'dompurify';
+import marked from 'marked';
 import React from 'react';
 import Creature from '../creatures/Creature';
 import EncounterCreature from '../encounters/EncounterCreature';
@@ -12,6 +14,7 @@ class EncounterCard extends React.Component{
         this.get_notes_color = this.get_notes_color.bind(this);
         this.set_hp = this.set_hp.bind(this);
         this.set_notes = this.set_notes.bind(this);
+        this.set_abilities = this.set_abilities.bind(this);
         this.abilities_style = this.abilities_style.bind(this);
     }
 
@@ -71,6 +74,13 @@ class EncounterCard extends React.Component{
         this.get_creature().set_notes(event.target.value);
     }
 
+    set_abilities(){
+        if (this.get_creature().creature.atks){
+            return {__html: DOMPurify.sanitize(marked(this.get_creature().creature.atks))};
+        }
+        return {__html: "<p></p>"};
+    }
+
     abilities_style(){
         const header = document.getElementById("abilities_header");
         const notes = document.getElementById("notes");
@@ -117,7 +127,7 @@ class EncounterCard extends React.Component{
                     </tr>
                 </table>
                 <div class="card_table card_header abilities">Abilities</div>
-                <p class="abilities">{this.get_creature().creature.atks}</p>
+                <p class="abilities" dangerouslySetInnerHTML={this.set_abilities()}></p>
                 <table class="creature_table card_table">
                     <tr class="creature_table">
                         <th class="creature_table" style={{backgroundColor: this.get_notes_color()}}>Notes</th>

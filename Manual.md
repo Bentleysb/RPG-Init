@@ -77,7 +77,7 @@ For players only their name is editable.
 
 The card only displays information if a single player or creature is selected.
 
-The Name, Type, Alignment, and Abilities fields accept any text input.  
+The Name, Type, and Alignment fields accept any text input.  
 The Size drop-down has preset creature sizes from the Dungeon&Dragons system.  
 
 The MHP field may contain either a number or a dice expression.  
@@ -86,6 +86,8 @@ Dice expressions are written in the format #d#+#, where # is an number and + may
 Init+ is for a creatures initiative bonus. This is what is used to automatically roll initiative for encounters.  
 
 The STR, DEX, CON, INT, WIS, and CHA stats have there modifiers automatically calculated using the Dungeons&Dragons system. The modifier is displayed as the large number in the center of the box.    
+
+The Abilities field will accept any text input, as well as [MarkDown](https://www.markdownguide.org/basic-syntax/) styling syntax. This feild will be rendered with markdown syling when viewed in an encounter. 
 
 The CR field is numerical, entering fractions may cause undesirable results. It is recommended to enter fractions as there decimal equivalent (example: 1/4 would be entered as .25).  
 
