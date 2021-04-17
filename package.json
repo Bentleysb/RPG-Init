@@ -2,19 +2,41 @@
   "name": "rpg_init",
   "version": "1.0.0",
   "description": "RPG Initiative Tracker",
+  "author": "Bentley Breithaupt",
+  "license": "MIT",
   "main": "RPG_Init.html",
   "dependencies": {
-    "inline-source": "^7.2.0"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.5.0",
-    "@babel/core": "^7.5.4",
-    "@babel/preset-react": "^7.0.0"
+    "@testing-library/jest-dom": "^5.11.10",
+    "@testing-library/react": "^11.2.6",
+    "@testing-library/user-event": "^12.8.3",
+    "inline-source": "^7.2.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx babel src/js_uncompiled -d src/js --presets @babel/preset-react && node scripts/inline.js"
+    "start": "react-scripts start",
+    "build": "react-scripts build && node scripts/inline.js",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "author": "Bentley Breithaupt",
-  "license": "MIT"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

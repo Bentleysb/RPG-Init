@@ -1,4 +1,4 @@
 node_modules/
-src/js/
 package-lock.json
 RPG_Init.html
+build

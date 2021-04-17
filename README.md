@@ -10,7 +10,7 @@ The program is compiled to a single html file. If using a precompiled distributi
 
 The program is tested in Mozilla Firefox and Google Chrome. It is recommended use one of these web browsers to run the program.
 
-If using an uncompiled distribution (containing lib, scripts, and src folders), see below for how to build the project and then run as above.
+If using an uncompiled distribution (containing public, scripts, and src folders), see below for how to build the project and then run as above.
 
 ## Using the Program
 
@@ -29,10 +29,9 @@ From the root of the project run:
 `npm run build`  
 
 You should see
-```
-Successfully compiled 3 files with Babel.
-RPG_Init.html created
-```
+`Creating an optimized build...`
+followed by some build details and
+`RPG_Init.html created`
 
 At this point all files have been compiled to RPG_Init.html.
 
