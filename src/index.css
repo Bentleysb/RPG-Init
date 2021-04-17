@@ -170,7 +170,6 @@ p.abilities {
   padding: 5px;
   border: 1px solid black;
   box-sizing: border-box;
-  white-space: pre-line;
 }
 
 .abilities_container {
