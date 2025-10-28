@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import IoBar from './components/IoBar';
 import EncounterTitle from './components/EncounterTitle';
 import EncounterButtonBar from './components/EncounterButtonBar';
@@ -16,6 +16,17 @@ class RenderFunctions{
     static sticky_origional;
     static sticky;
     static table_container;
+    static react_roots = {
+        'io_bar': createRoot(document.getElementById('io_bar')),
+        'encounter_header': createRoot(document.getElementById('encounter_header')),
+        'encounter_button_bar': createRoot(document.getElementById('encounter_button_bar')),
+        'encounter_table': createRoot(document.getElementById('encounter_table')),
+        'encounter_card': createRoot(document.getElementById('encounter_card')),
+        'creature_button_bar': createRoot(document.getElementById('creature_button_bar')),
+        'player_table': createRoot(document.getElementById('player_table')),
+        'creature_table': createRoot(document.getElementById('creature_table')),
+        'creature_card': createRoot(document.getElementById('creature_card')),
+    };
 
     static open_creature_list(c_list, e_list){
         document.getElementById("encounter_button_bar").style.display = "none";
@@ -42,16 +53,20 @@ class RenderFunctions{
         setTimeout(RenderFunctions.render_components, 10, c_list, e_list);
     }
 
+    static render(react_node, dom_element){
+        RenderFunctions.react_roots[dom_element].render(react_node)
+    }
+
     static render_components(c_list, e_list){
-        ReactDOM.render(<IoBar creature_list={c_list} encounter={e_list}/>, document.getElementById('io_bar'));
-        ReactDOM.render(<EncounterTitle encounter={e_list}/>, document.getElementById('encounter_header'));
-        ReactDOM.render(<EncounterButtonBar creature_list={c_list} encounter={e_list}/>, document.getElementById('encounter_button_bar'));
-        ReactDOM.render(<EncounterTable encounter={e_list}/>, document.getElementById('encounter_table'));
-        ReactDOM.render(<BlankCard content={<EncounterCard encounter={e_list}/>} left={parseFloat(document.getElementById("encounter_table").getBoundingClientRect().right)} top={parseInt(document.getElementById("encounter_button_bar").getBoundingClientRect().bottom)}/>, document.getElementById('encounter_card'));
-        ReactDOM.render(<CreatureButtonBar creature_list={c_list} encounter={e_list}/>, document.getElementById('creature_button_bar'));
-        ReactDOM.render(<PlayerTable creature_list={c_list}/>, document.getElementById('player_table'));
-        ReactDOM.render(<CreatureTable creature_list={c_list}/>, document.getElementById('creature_table'));
-        ReactDOM.render(<BlankCard content={<CreatureCard creature_list={c_list} encounter={e_list}/>} left={parseFloat(document.getElementById("creature_tables").getBoundingClientRect().right)} top={parseInt(document.getElementById("creature_button_bar").getBoundingClientRect().bottom)}/>, document.getElementById('creature_card'));
+        RenderFunctions.render(<IoBar creature_list={c_list} encounter={e_list}/>, 'io_bar');
+        RenderFunctions.render(<EncounterTitle encounter={e_list}/>, 'encounter_header');
+        RenderFunctions.render(<EncounterButtonBar creature_list={c_list} encounter={e_list}/>, 'encounter_button_bar');
+        RenderFunctions.render(<EncounterTable encounter={e_list}/>, 'encounter_table');
+        RenderFunctions.render(<BlankCard content={<EncounterCard encounter={e_list}/>} left={parseFloat(document.getElementById("encounter_table").getBoundingClientRect().right)} top={parseInt(document.getElementById("encounter_button_bar").getBoundingClientRect().bottom)}/>, 'encounter_card');
+        RenderFunctions.render(<CreatureButtonBar creature_list={c_list} encounter={e_list}/>, 'creature_button_bar');
+        RenderFunctions.render(<PlayerTable creature_list={c_list}/>, 'player_table');
+        RenderFunctions.render(<CreatureTable creature_list={c_list}/>, 'creature_table');
+        RenderFunctions.render(<BlankCard content={<CreatureCard creature_list={c_list} encounter={e_list}/>} left={parseFloat(document.getElementById("creature_tables").getBoundingClientRect().right)} top={parseInt(document.getElementById("creature_button_bar").getBoundingClientRect().bottom)}/>, 'creature_card');
     }
 
     static sticky_button_bar_handler(c_list, e_list) {

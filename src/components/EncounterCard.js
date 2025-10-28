@@ -1,5 +1,5 @@
 import DOMPurify from 'dompurify';
-import marked from 'marked';
+import {marked} from 'marked';
 import React from 'react';
 import Creature from '../creatures/Creature';
 import EncounterCreature from '../encounters/EncounterCreature';
@@ -76,7 +76,7 @@ class EncounterCard extends React.Component{
 
     set_abilities(){
         if (this.get_creature().creature.atks){
-            return {__html: DOMPurify.sanitize(marked(this.get_creature().creature.atks))};
+            return {__html: DOMPurify.sanitize(marked.parse(this.get_creature().creature.atks))};
         }
         return {__html: "<p></p>"};
     }
